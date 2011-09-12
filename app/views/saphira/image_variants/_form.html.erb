@@ -1,0 +1,29 @@
+<%= form_for(@image_variant) do |f| %>
+  <% if @image_variant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@image_variant.errors.count, "error") %> prohibited this image_variant from being saved:</h2>
+
+      <ul>
+      <% @image_variant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :manipulation %><br />
+    <%= f.text_field :manipulation %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

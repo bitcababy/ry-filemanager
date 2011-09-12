@@ -1,0 +1,24 @@
+<header class="page_description">
+    <h2><%= t 'saphira.general.edit_image_variant_settings' %></h2>
+</header>
+
+<div class="filemanager">
+  <%= form_for(@file_item) do |f| %>
+    <% if @file_item.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@file_item.errors.count, "error") %> prohibited this file_item from being saved:</h2>
+
+        <ul>
+        <% @file_item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <%= f.saphira_image_crop "field_pre_manipulation_#{params[:id]}".to_sym, :aspect_ratio => (@file_item.image_variant(params[:id]).width.to_f/@file_item.image_variant(params[:id]).height.to_f)%>
+    <div class="actions">
+      <%= hidden_field_tag :redirect_to, file_item_image_variant_setting_path(@file_item, params[:id]) %>
+      <%= f.submit 'update' %>
+    </div>
+  <% end %>
+</div>

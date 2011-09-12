@@ -1,7 +1,6 @@
-<li><a <%= set_class(:class => "top_level", :controller => ["file_items"]) %>><%= image_tag 'admin/icons/small/grey/Paperclip.png' %><%= t('admin.filemanager.filemanager', :default => 'Filemanager') %></a>
+<li><a <%= set_class(:class => "top_level", :controller => ["file_items", "image_variants", "image_variant_settings"]) %>><%= image_tag 'admin/icons/small/grey/Paperclip.png' %><%= t('admin.filemanager.filemanager', :default => 'Filemanager') %></a>
     <ul class="drawer">
-          <li <%= set_class(:controller => "file_items", :action => ["index", "show"]) %>><%= link_to t('admin.filemanager.list', :default => 'List'), filemanager.file_items_path %></li>
-          <li <%= set_class(:controller => "file_items", :action => "new") %>><%= link_to t('admin.filemanager.new_file', :default => 'New File'), filemanager.new_file_item_path(:type => ::Saphira::FileItem::TYPE_FILE, :parent_id => @file_item.try(:id)) %></li>
-          <li <%= set_class(:controller => "file_items", :action => "new") %>><%= link_to t('admin.filemanager.new_folder', :default => 'New Folder'), filemanager.new_file_item_path(:type => ::Saphira::FileItem::TYPE_FOLDER, :parent_id => @file_item.try(:id)) %></li>
+          <li <%= set_class(:controller => ["file_items", "image_variant_settings"], :action => ["index", "show", "new", "edit"]) %>><%= link_to t('admin.filemanager.list', :default => 'List'), filemanager.file_items_path %></li>
+          <li <%= set_class(:controller => "image_variants", :action => ["index", "show", "new", "edit"]) %>><%= link_to t('admin.filemanager.image_variants', :default => 'Image variants'), filemanager.image_variants_path %></li>
     </ul>
 </li>

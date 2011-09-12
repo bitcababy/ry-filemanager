@@ -1,0 +1,29 @@
+<h1>Listing image_variants</h1>
+
+<div class="filemanager">
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Manipulation</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @image_variants.each do |image_variant| %>
+  <tr>
+    <td><%= image_variant.name %></td>
+    <td><%= image_variant.description %></td>
+    <td><%= image_variant.manipulation %></td>
+    <td><%= link_to 'Show', image_variant %></td>
+    <td><%= link_to 'Edit', edit_image_variant_path(image_variant) %></td>
+    <td><%= link_to 'Destroy', image_variant, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Image variant', new_image_variant_path %>
+</div>

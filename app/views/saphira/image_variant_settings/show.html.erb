@@ -37,12 +37,12 @@
         </tr>
         <tr class="image_variant default">
           <td class="key"><%= t 'saphira.general.default', :default => 'Default' %></td>
-          <td class="value"></td>
+          <td class="value"><%= link_to 'show', file_item_path(@file_item) %></td>
         </tr>
         <% Saphira::ImageVariant.all.each do |variant| %>
         <tr class="image_variant <%= variant.name.gsub(/[^a-zA-Z_]+/, '_') %>">
           <td class="key"><%= variant.name %></td>
-          <td class="value"><%= link_to 'show', file_item_image_variant_setting_path(@file_item, variant) %></td>
+                  <td class="value"><%= link_to 'show', file_item_image_variant_setting_path(@file_item, variant) unless @image_variant==variant %></td>
         </tr>
         <% end %>
       <% end %>
@@ -50,14 +50,12 @@
   </div>
 
   <% if @file_item.file_uid and @file_item.file.image? %>
-  <div class="image">
-    <%= image_tag @file_item.file.thumb('300x300').url %>
+  <div id="saphira-file-preview" class="file preview image">
+    <%= image_tag @file_item.image_variant(params[:id]).thumb('300x300').url %>
   </div>
   <% end %>
   
   <div style="clear: both;" class="actions">
-    <%= link_to 'Edit', edit_file_item_path(@file_item) %> |
-    <%= link_to 'Back', @file_item.parent || file_items_path %> |
-    <%= link_to 'Download', @file_item.file.url %>
+    <%= link_to 'Edit', edit_file_item_image_variant_setting_path(@file_item, @image_variant) %>
   </div>
 </div>

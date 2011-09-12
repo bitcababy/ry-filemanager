@@ -1,5 +1,6 @@
 require "ry-filemanager/saphira_application_controller_extension"
 require "ry-filemanager/helpers/form_helper"
+require "ry-filemanager/helpers/form_builder"
 
 module RyFilemanager
   class Engine < Rails::Engine
@@ -20,13 +21,23 @@ module RyFilemanager
         # defining abilities
         ability do |ability, user|
           if user.role? :article_writer
-            ability.can :read, [Saphira::FileItem]
+            ability.can :manage, [Saphira::FileItem]
           elsif user.role? :premium_user
             ability.can :read, [Saphira::FileItem]
           else
             ability.can :read, [Saphira::FileItem]
           end
+          
+          if user.role? :admin
+            ability.can :manage, [Saphira::FileItem, Saphira::ImageVariant]
+          end
         end
+        
+        # The javascripts required by saphira
+        javascripts ['saphira/jquery.color.js', 'saphira/jquery.jcrop.js']
+        
+        # The stylesheets required by ry-filemanager
+        stylesheets ['saphira/application.css', 'ry-filemanager/application.css']
       end
       
       # extend the saphira application controller with some helper methods and add some behaviors
@@ -35,6 +46,7 @@ module RyFilemanager
       
       # extend the action view with some helpers for file selection
       ActionView::Base.send :include, RyFilemanager::Helpers::FormHelper
+      ActionView::Helpers::FormBuilder.send :include, RyFilemanager::Helpers::FormBuilder
     end
   end
 end

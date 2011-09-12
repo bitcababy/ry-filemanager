@@ -14,6 +14,14 @@ module RyFilemanager
         )
         output_buffer
       end
+      
+      def ry_option_field_ry_filemanager_image_variant_selector(object_name, method, options = {})
+        output_buffer = ActiveSupport::SafeBuffer.new
+        output_buffer << select(object_name, method, ::Saphira::ImageVariant.all.map{|i| [i.name, i.id] }, 
+          :selected => options[:value]
+        )
+        output_buffer
+      end
     end
   end
 end

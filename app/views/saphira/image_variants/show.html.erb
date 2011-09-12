@@ -1,0 +1,23 @@
+<h1>Image variant <%= @image_variant.name %></h1>
+<p id="notice"><%= notice %></p>
+
+<div class="filemanager">
+<p>
+  <b>Name:</b>
+  <%= @image_variant.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @image_variant.description %>
+</p>
+
+<p>
+  <b>Manipulation:</b>
+  <%= @image_variant.manipulation %>
+</p>
+
+
+<%= link_to 'Edit', edit_image_variant_path(@image_variant) %> |
+<%= link_to 'Back', image_variants_path %>
+</div>

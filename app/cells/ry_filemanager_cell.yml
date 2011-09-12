@@ -7,5 +7,5 @@ cell:
             desc:   Places one selected image at the frontend
             serialized_attributes:
                 file_item_id: ry_filemanager_file_selector
-                image_size: string
+                image_variant: ry_filemanager_image_variant_selector
                 div_class: string

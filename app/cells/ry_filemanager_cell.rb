@@ -7,11 +7,10 @@ class RyFilemanagerCell< Cell::Rails
     @file_item = Saphira::FileItem.find(@options[:file_item_id]) if @options[:file_item_id]
     @image = nil
     if @file_item
-      @image = @file_item.file
-      unless @options[:image_size].nil? or @options[:image_size].empty?
-        @options[:image_size].split(' ').each do |size|
-          @image = @image.thumb(size)
-        end
+      if @file_item.file.image? and @options[:image_variant]
+        @image = @file_item.image_variant(@options[:image_variant])
+      else
+        @image = @file_item.file
       end
     end
     render
