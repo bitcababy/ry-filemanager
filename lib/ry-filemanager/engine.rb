@@ -34,10 +34,10 @@ module RyFilemanager
         end
         
         # The javascripts required by saphira
-        javascripts ['saphira/jquery.color.js', 'saphira/jquery.jcrop.js']
+        javascripts ['saphira/jquery.color.js', 'saphira/jquery.jcrop.js', 'ry-filemanager/jquery.nivo.slider.js']
         
         # The stylesheets required by ry-filemanager
-        stylesheets ['saphira/application.css', 'ry-filemanager/application.css']
+        stylesheets ['saphira/application.css', 'ry-filemanager/application.css', 'ry-filemanager/themes/default/default.css']
       end
       
       # extend the saphira application controller with some helper methods and add some behaviors

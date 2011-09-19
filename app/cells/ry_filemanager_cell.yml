@@ -9,3 +9,13 @@ cell:
                 file_item_id: ry_filemanager_file_selector
                 image_variant: ry_filemanager_image_variant_selector
                 div_class: string
+                
+        -   name:   Image Slider widget
+            method: imageslider_widget
+            desc:   Image slider for special folder
+            serialized_attributes:
+                file_item_id: ry_filemanager_folder_selector
+                recursive: boolean
+                image_variant: ry_filemanager_image_variant_selector
+                slider_options: text
+                div_class: string

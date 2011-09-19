@@ -1,0 +1,13 @@
+<div class="ry_filemanager_imageslider_widget theme-default">
+  <div id="nivoSlider-<%= @snip_id %>" class="nivoSlider">
+    <% @images.each do |image| %>
+      <%= image_tag image.url %>
+    <% end %>
+  </div>
+  <%= javascript_tag <<-JAVASCRIPT
+    $(window).load(function() {
+      $('#nivoSlider-#{@snip_id}').nivoSlider(#{@options[:slider_options]});
+    });
+  JAVASCRIPT
+  %>
+</div>
