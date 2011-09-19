@@ -29,6 +29,7 @@ class RyFilemanagerCell< Cell::Rails
       end
       @images.select! { |f| f.file_uid and f.file.image? }
       @images.map! { |i| i.image_variant(@options[:image_variant]) }
+      @images.shuffle! if @options[:randomize_images]
     end
     render
   end
