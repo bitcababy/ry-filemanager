@@ -1,0 +1,38 @@
+<header class="page_description">
+    <h2><%= t 'saphira.general.new_file' %></h2>
+</header>
+<div class="filemanager">
+  <script type="text/javascript">
+  <%- session_key = Rails.application.config.session_options[:key] -%>
+  $(function () {
+    
+    var uploadify_script_data = {};
+  
+    // Fetch the CSRF meta tag data
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var csrf_param = $('meta[name=csrf-param]').attr('content');
+  
+    // Now associate the data in the config, encoding the data safely
+    uploadify_script_data[csrf_param] = encodeURI(csrf_token)
+  
+    // Associate the session information
+    uploadify_script_data['<%= session_key %>'] = '<%= cookies[session_key] %>';
+    uploadify_script_data['file_item[item_type]'] = 'file';
+    uploadify_script_data['file_item[parent_id]'] = '<%= params[:parent_id] %>';
+  
+    $('#upload-photo').uploadify({
+      uploader : '<%= image_path('saphira/uploadify.swf') %>',
+      cancelImg : '<%= image_path('saphira/cancel.png') %>',
+      scriptData : uploadify_script_data,
+      script : '<%= file_items_path(:format => 'json') %>',
+      auto: true,
+      fileDataName: 'file_item[file]',
+      multi: true
+    });   
+  });
+  </script>
+
+  <input type="file" id="upload-photo" name="file_item[file]" class="no-uniform" />
+
+  <nav><%= link_to 'Back', file_items_path + (params[:parent_id] ? ('/' + Saphira::FileItem.find(params[:parent_id]).path) : '') %></nav>
+</div>

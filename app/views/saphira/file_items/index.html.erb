@@ -34,5 +34,6 @@
   <% end %>
 
   <%= link_to t('admin.filemanager.new_file'), new_file_item_path(:type => ::Saphira::FileItem::TYPE_FILE, :parent_id => @file_item.id) %> | 
+  <%= link_to t('admin.filemanager.new_files'), upload_file_items_path(:parent_id => @file_item.id) %> | 
   <%= link_to t('admin.filemanager.new_folder'), new_file_item_path(:type => ::Saphira::FileItem::TYPE_FOLDER, :parent_id => @file_item.id) %>
 </div>
