@@ -22,7 +22,7 @@ Installation
 Add this to your Gemfile:
 
 ```ruby
-gem 'saphira', "~> 0.1.0.beta2"
+gem 'saphira', "~> 0.1.1.beta1"
 gem 'ry-filemanager', :git => 'git://github.com/spieker/ry-filemanager.git'
 ```
 
